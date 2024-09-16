@@ -44,7 +44,7 @@ def categoryTarget(category: str) -> str:
 
 def getCategoryItemStatus(item) -> str:
     try:
-        item.find('span', class_='label-previsto').text
+        item.find('div', class_='label-previsto').text
     except:
         return 'open'
 
@@ -64,7 +64,7 @@ def Concursos(categorySelect):
         print("Developer: This is a security issue, do not propagate None result")
         abort(jsonify(message=errorMessage, code=400))
 
-    availableItemsInCategory = pageScraper.find('div', class_='list-concursos').find('tbody').find_all('tr') # type: ignore
+    availableItemsInCategory = pageScraper.find('main', id='conteudo').find('tbody').find_all('tr') # type: ignore
  
     for item in availableItemsInCategory:
         concursosAvailable.append({
